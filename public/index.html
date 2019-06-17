@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, WebVR! - A-Frame</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame">
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script type="module" src="/algorithm.js"></script>
+    <script type="module" src="/main.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene" background="color: #000">  
+      <a-entity id="camera" position="1 1 4" >
+        <a-entity camera look-controls>
+          <a-text id="hud" value=">" color="white" position="-3 -3 -4" font="sourcecodepro"></a-text>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
