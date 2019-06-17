@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "sourceMap":  true,
+    "outDir": "./public/",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "es6",
+    "module": "es6",
+
+  },
+  "include": [
+      "src/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.test.ts"
+  ]
+}
