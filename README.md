@@ -1,8 +1,3 @@
-# Log
-
- - [change making alghorithm](https://en.wikipedia.org/wiki/Change-making_problem)
- - visualization (a-frame)
-
 # algorithm
 - alghorithm (coin exchange)
   - greedy version 
@@ -16,7 +11,8 @@
 
 # live backend with potential
  - language typescript
-
+ - not used for anything except serving client app
+ 
 # quality / tests
  - static types checker - typescript
  - jest tests
@@ -24,9 +20,9 @@
 # infrastructure
 
  - scalability (docker)
-
+ - glitch
+ 
 # extensions
  
  - algorithm
- - 
  
