@@ -8,7 +8,19 @@ const init = () => {
             case 'Enter':
                 if (amount) {
                     [...document.querySelectorAll('.node')].map(n => n.remove());
-                    const coins = getCoins(parseInt(amount));
+                    let coins = [];
+                    try {
+                        const amountNumber = parseInt(amount);
+                        if (amountNumber <= 1000000) {
+                            coins = getCoins(parseInt(amount));
+                        }
+                        else {
+                            throw new Error('ItWillKillYourBrowserException');
+                        }
+                    }
+                    catch (e) {
+                        coins = [e.message];
+                    }
                     coins.map((c, i) => setTimeout(() => addNode(c), i * 250));
                     console.log(coins);
                 }
@@ -18,14 +30,14 @@ const init = () => {
                 amount = amount.substring(0, amount.length - 1);
                 break;
             default:
-                if (e.key.match(/^[0-9]$/i))
+                if (e.key.match(/^[\-0-9]$/i))
                     amount += e.key;
         }
         updateHud(amount);
         return false;
     });
 };
-const updateHud = (text) => document.querySelector('#hud').setAttribute('value', '> ' + (text || ''));
+const updateHud = (text) => document.querySelector('#hud').setAttribute('value', 'Enter amount > ' + (text || ''));
 const randomPosition = () => [0, 0, 0].map(_ => Math.random() * 2);
 const addNode = (text) => {
     const scene = document.querySelector('#scene');
@@ -51,7 +63,7 @@ const getColor = (amount) => {
         case 10:
             return `#${randomHex}${randomHex}${randomHex}`;
         default:
-            return 'white';
+            return 'orange';
     }
 };
 init();

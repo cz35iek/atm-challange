@@ -10,7 +10,18 @@ const init = () => {
       case 'Enter':
         if (amount){
           [...document.querySelectorAll('.node')].map(n=>n.remove())
-          const coins = getCoins(parseInt(amount))
+          let coins: (number | string)[] = []
+          try  {
+            const amountNumber = parseInt(amount)
+            if (amountNumber<=1000000){
+              coins = getCoins(parseInt(amount));
+            } else {
+              throw new Error('ItWillKillYourBrowserException')
+            }
+          }
+          catch (e) {
+            coins = [e.message]
+          }
           coins.map((c,i) => setTimeout(()=>addNode(c), i*250))
           console.log(coins)
         }
@@ -20,7 +31,7 @@ const init = () => {
         amount=amount.substring(0, amount.length-1) 
         break
       default:
-        if (e.key.match(/^[0-9]$/i))          
+        if (e.key.match(/^[\-0-9]$/i))          
           amount+=e.key
     }
     updateHud(amount)
@@ -28,11 +39,11 @@ const init = () => {
   });
 }
 
-const updateHud = (text: string) => document.querySelector('#hud').setAttribute('value', '> ' + (text || ''))
+const updateHud = (text: string) => document.querySelector('#hud').setAttribute('value', 'Enter amount > ' + (text || ''))
 
 const randomPosition = () => [0,0,0].map(_ => Math.random()*2)
 
-const addNode = (text: number) => {
+const addNode = (text: number | string) => {
   const scene = document.querySelector('#scene')
   const el = document.createElement('a-text');
 
@@ -47,7 +58,7 @@ const addNode = (text: number) => {
   scene.appendChild(el)
 }
 
-const getColor = (amount: number) => {
+const getColor = (amount: number | string) => {
   const randomHex = Math.floor((Math.random() * 8) + 8).toString(16)
   switch (amount) {
     case 100:
@@ -59,7 +70,7 @@ const getColor = (amount: number) => {
     case 10:
       return `#${randomHex}${randomHex}${randomHex}`
     default:
-      return 'white'
+      return 'orange'
   }
 }
 
