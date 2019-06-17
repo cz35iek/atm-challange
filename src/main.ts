@@ -13,10 +13,14 @@ const init = () => {
           let coins: (number | string)[] = []
           try  {
             const amountNumber = parseInt(amount)
-            if (amountNumber<=1000000){
-              coins = getCoins(parseInt(amount));
+            if (!Number.isNaN(amountNumber) ){
+              if (amountNumber <= 1000000){
+                coins = getCoins(parseInt(amount));
+              } else {
+                throw new Error('ItWillKillYourBrowserException')
+              }
             } else {
-              throw new Error('ItWillKillYourBrowserException')
+              throw new Error('NotANumberException')
             }
           }
           catch (e) {
